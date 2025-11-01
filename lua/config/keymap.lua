@@ -1,8 +1,6 @@
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
--- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
--- Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
@@ -23,6 +21,10 @@ vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iag
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[ ] Find existing buffers' })
+vim.keymap.set("n", "<leader>todo", "<cmd>TodoTelescope<CR>", {
+  desc = "Search TODO comments",
+  silent = true,
+})
 
 -- LSP
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -45,7 +47,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('grt', vim.lsp.buf.type_definition, '[G]oto [T]ype Definition')
     map('gW', builtin.lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
-    -- Format buffer
     vim.keymap.set('n', '<leader>f', function()
       vim.lsp.buf.format({ async = true })
     end, opts)
