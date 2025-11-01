@@ -1,5 +1,7 @@
-require("vim-options")
-require("config.lazy")
+require("config.vim-config")
+
+require("core.lazy")
+require("core.lsp")
 
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
@@ -15,3 +17,5 @@ require('telescope').setup {
   }
 }
 
+require("config.key-binding")
+require("config.colorscheme")
